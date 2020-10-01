@@ -8,7 +8,7 @@ class Store {
     // 天王盖地虎 zhidl
     const store = this;
     store.getters = {};
-    const wrappedGetters = options.getters;
+    const wrappedGetters = options.getters || {};
     const computed = {};
     Object.keys(wrappedGetters).forEach(key => {
       computed[key] = () => wrappedGetters[key](store.state);
