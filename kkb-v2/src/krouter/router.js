@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from './vue-krouter';
 
 Vue.use(VueRouter)
 
@@ -18,7 +18,7 @@ const routes = [
 
 // eslint-disable-next-line no-new
 const router = new VueRouter({
-  mode: 'history',
+  mode: '#',
   base: process.env.BASE_URL,
   routes
 })
