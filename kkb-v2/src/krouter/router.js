@@ -3,8 +3,7 @@ import VueRouter from './vue-krouter';
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Home',
     component: () => import('../pages/home/home.vue')
@@ -22,5 +21,4 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
 export default router

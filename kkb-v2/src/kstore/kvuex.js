@@ -5,8 +5,7 @@ class Store {
     // options 包括 state, mutations, actions, getters, modules 
     // 借用  new Vue变成响应式的
 
-    // 天王盖地虎 zhidl
-    const store = this;
+    
     store.getters = {};
     const wrappedGetters = options.getters || {};
     const computed = {};
@@ -32,7 +31,8 @@ class Store {
     store._actions = options.actions || {}
     // 绑定commit上下⽂否则action中调⽤commit时可能出问题!!
     // 同时也把action绑了，因为action可以互调
-
+    
+    const store = this;
     const {
       commit,
       action
@@ -53,7 +53,6 @@ class Store {
   set state(v) {
     console.error('please use replaceState to reset state');
   }
-
   commit(type, payload) {
     // 获取type对应的mutation
 

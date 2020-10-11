@@ -3,6 +3,7 @@ import Vuex from './kvuex.js'
 
 Vue.use(Vuex)
 
+
 export default new Vuex.Store({
   state: {
     num: 0
