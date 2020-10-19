@@ -1,4 +1,3 @@
-
 // 响应式
 function defineReactive(obj, key, val) {
 
@@ -66,7 +65,7 @@ function proxy(vm) {
     })
   })
 
-  Object.keys(vm.$methods).forEach((key) => {
+  vm.$methods && Object.keys(vm.$methods).forEach((key) => {
     Object.defineProperty(vm, key, {
       get() {
         return vm.$methods[key]
@@ -88,7 +87,159 @@ class KVue {
 
     proxy(this);
 
-    new Compile(options.el, this);
+    // new Compile(options.el, this);
+
+    if (options.el) {
+      this.$mount(options.el)
+    }
+  }
+
+  $mount(el) {
+    this.$el = document.querySelector(el);
+
+    const updateComputed = () => {
+      const {
+        render
+      } = this.$options;
+
+      const vnode = render.call(this, this.$createElement);
+      this._update(vnode);
+
+
+      // const parent = this.$el.parentElement;
+      // parent.insertBefore(el, this.$el.nextSibling);
+      // parent.removeChild(this.$el);
+      // this.$el = el;
+    }
+
+    new Watcher(this, updateComputed)
+  }
+
+  $createElement(tag, props, children) {
+    return {
+      tag,
+      props,
+      children
+    }
+  }
+
+  _update(vnode) {
+    const prevVnode = this._vnode;
+
+    if (!prevVnode) {
+      this.__patch__(this.$el, vnode)
+    } else {
+      this.__patch__(prevVnode, vnode)
+    }
+  }
+  // first blood 
+
+  // my name's zhidl
+  __patch__(oldVnode, vnode) {
+
+    if (oldVnode.nodeType) {
+      const parent = oldVnode.parentElement;
+      const refElm = oldVnode.nextSibling;
+
+      // const el = document.createElement(vnode.tag);
+
+      const el = this.createElm(vnode);
+      parent.insertBefore(el, refElm);
+      parent.removeChild(oldVnode);
+
+      this._vnode = vnode;
+    } else {
+      const el = vnode.el = oldVnode.el;
+
+      if (oldVnode.tag === vnode.tag) {
+
+        // props
+        const oldProps = oldVnode.props || {};
+        const newProps = vnode.props || {};
+
+        for (const key in newProps) {
+          const oldValue = oldProps[key];
+
+          const newValue = newProps[key];
+
+          if (oldValue !== newValue) {
+            el.setAttribute(key, newValue)
+          }
+        }
+        for (const key in oldProps) {
+          if (!(key in newProps)) {
+            el.removeAttribute(key);
+          }
+        }
+
+        // children
+        const oldCh = oldVnode.children;
+        const newCh = vnode.children;
+        if (typeof newCh === 'string') {
+          if (typeof oldCh === 'string') {
+            if (newCh !== oldCh) {
+              el.textContent = newCh;
+            }
+          } else {
+            // no text
+            el.textContent = newCh
+          }
+        } else {
+          if (typeof oldCh === 'string') {
+            el.innerHTML = '';
+            newCh.forEach(child => this.createElm(child))
+          } else {
+            this.updateChildren(el, oldCh, newCh)
+          }
+        }
+
+      }
+
+    }
+  }
+
+  createElm(vnode) {
+    const el = document.createElement(vnode.tag);
+    if (vnode.props) {
+      for (const key in vnode.props) {
+        const value = vnode.props[key];
+        el.setAttribute(key, value);
+      }
+    }
+
+    if (vnode.children) {
+      if (typeof vnode.children === 'string') {
+        el.textContent = vnode.children;
+      } else {
+        vnode.children.forEach(n => {
+          const child = this.createElm(n);
+          el.appendChild(child);
+        })
+      }
+    }
+
+    vnode.el = el;
+
+    return el;
+  }
+
+  updateChildren(parentElm, oldCh, newCh) {
+    const len = Math.min(oldCh.length, newCh.length);
+    for (let i = 0; i < len; i++) {
+      this.__patch__(oldCh[i], newCh[i])
+    }
+
+    if (newCh.length > oldCh.length) {
+      newCh.slice(len).forEach(child => {
+        const el = this.createElm(child);
+        parentElm.appendChild(el);
+      })
+    } else if (newCh.length < oldCh.length) {
+      oldCh.slice(len).forEach(child => {
+        const el = this.createElm(child);
+        parentElm.removeChild(el);
+      })
+    }
   }
 }
 
@@ -194,30 +345,34 @@ class Compile {
 
 // 监听器
 class Watcher {
-  constructor(vm, key, updateFn) {
+  constructor(vm, fn) {
     this.vm = vm;
-    this.key = key;
-    this.updateFn = updateFn;
+    // this.key = key;
+    this.getter = fn;
 
+    this.get()
+  }
+  get() {
     // 触发依赖收集
     Dep.target = this;
-    this.vm[this.key];
+    this.getter.call(this.vm);
+    // this.vm[this.key];
     Dep.target = null;
   }
-
   // 执行更新操作
   update() {
-    this.updateFn.call(this.vm, this.vm[this.key])
+    this.get();
+    // this.updateFn.call(this.vm, this.vm[this.key])
   }
 }
 
 
 class Dep {
   constructor() {
-    this.deps = [];
+    this.deps = new Set();
   }
   addDep(dep) {
-    this.deps.push(dep)
+    this.deps.add(dep)
   }
   notify() {
     this.deps.forEach(dep => dep.update())

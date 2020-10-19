@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{counter}}
+  </div>
+  <script src="./02-kvue.js"></script>
+
+  <script>
+    const app = new KVue({
+      el: '#app',
+      data: {
+        counter: 1
+      },
+      render(h) {
+        // const d1 = document.createElement('div');
+        // d1.id = 'app';
+        // const p1 = document.createElement('p');
+        // p1.textContent = this.counter;
+        // d1.appendChild(p1);
+        // return d1;
+
+        return h('div', {id: 'app'}, [
+          h('p', {class: 'p'}, this.counter + '')
+        ])
+      }
+    })
+
+    setInterval(() => {
+      app.counter++
+    }, 1000)
+
+    // setInterval(() => {
+    //   app.num++
+    // }, 100)
+  </script>
+</body>
+
+</html>
