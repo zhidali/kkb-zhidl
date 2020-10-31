@@ -52,7 +52,9 @@ class App extends Component {
 	// 组件卸载之前执行
 	componentWillUnmount() {}
 	render() {
-		return <div id="text">{this.state.text}</div>;
+		return <div id="text">
+			<h2>{this.state.text}</h2>
+		</div>;
 	}
 }
 

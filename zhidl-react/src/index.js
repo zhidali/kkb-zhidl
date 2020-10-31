@@ -2,18 +2,15 @@
 import React from 'react';
 // 负责渲染实际dom  vdom -> dom转换
 import ReactDOM from 'react-dom';
-// 模块化样式
-import style from './index.module.css';
-
-import SetState from './SetState.jsx';
+import Index from './reactapi/index.jsx';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<div className={style.app}>
-			<SetState />
+		<div>
+			<Index />
 		</div>
 	</React.StrictMode>,
 	document.getElementById('root')
