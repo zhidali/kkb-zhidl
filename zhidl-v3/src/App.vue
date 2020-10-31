@@ -1,7 +1,21 @@
 <template>
 <div>
-  <k-table :data="tableData">
+  <k-table :data="tableData" :default-sort="{prop: 'name'}">
+    <k-table-column prop="date" lable="时间" ></k-table-column>
+
+    <k-table-column prop="name" lable="姓名" />
     <k-table-column prop="address" lable="地址" />
+    
+    <k-table-column lable="操作">
+      <template v-slot:default="slotProps">
+        <div v-if="slotProps.idx === 1" @click="click(slotProps)">
+          编辑
+        </div>
+        <div v-else @click="click(slotProps)">
+          删除
+        </div>
+      </template>
+    </k-table-column>
   </k-table>
 </div>
 </template>
@@ -39,8 +53,13 @@ export default {
       },
     ]);
 
+    const click = (slotProps) => {
+      console.log(slotProps);
+    }
+
     return {
-      tableData
+      tableData,
+      click
     }
   },
 };
