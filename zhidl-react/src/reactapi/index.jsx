@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 // 模块化样式
 import style from './index.module.css';
+// setState用法
 import SetState from './SetState.jsx';
-
+// this.props.children
 import Children from './PropsChildren';
+// redux
+import Redux from './Redux';
 
-
+// react-redux
+import ReactRedux from './ReactRedux';
+// react-router-dom
+import ReactRouter from './ReactRouter';
+// PureComponent
+import PureCom from './PureCom';
+// 生命周期 prop-types类型校验
+import LifeCycle from './LifeCycle';;
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +42,15 @@ class Index extends Component {
 				}
 			</Children>
 			
+      <Redux />
+
+      <ReactRedux />
+
+			<ReactRouter />
+
+			<PureCom />
+
+			<LifeCycle />
 		</div> );
   }
 }

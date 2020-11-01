@@ -3,18 +3,27 @@ import React from 'react';
 // 负责渲染实际dom  vdom -> dom转换
 import ReactDOM from 'react-dom';
 import Index from './reactapi/index.jsx';
+
+import { Provider } from 'react-redux';
+import store from './reactapi/react-redux/store';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-	<React.StrictMode>
-		<div>
-			<Index />
-		</div>
-	</React.StrictMode>,
-	document.getElementById('root')
-);
+function renderPage() {
+	ReactDOM.render(
+		<Provider store={store}>
+				<React.StrictMode>
+				<div>
+					<Index />
+				</div>
+			</React.StrictMode>
+		</Provider>
+		,
+		document.getElementById('root')
+	);
+}
+renderPage();
 
 // jsx 基本使用 表达式用{}包裹 表达式为以下：
 // 函数
