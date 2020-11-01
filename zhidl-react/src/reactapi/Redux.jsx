@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import store from './redux/store';
 
+
+
 class Redux extends Component {
 	constructor(props) {
 		super(props);

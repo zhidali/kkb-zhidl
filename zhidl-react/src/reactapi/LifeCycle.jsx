@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 // react17中将要废弃的 生命周期
 // componentWillMount
 // componentWillUpdate
@@ -66,6 +67,7 @@ class LifeCycle extends Component {
 			<div>
 				<h2>生命周期</h2>
 				<div onClick={this.setCount}>count: {count}</div>
+        
 			</div>
 		);
 	}
