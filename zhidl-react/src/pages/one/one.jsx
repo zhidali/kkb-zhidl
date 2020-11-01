@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Context from './context/index.jsx';
-
+import Hoc from './hoc/index.jsx'
 class One extends Component {
 	constructor(props) {
 		super(props);
@@ -10,6 +10,7 @@ class One extends Component {
 		return (
 			<div>
         <Context />
+				<Hoc />
 			</div>
 		);
 	}
