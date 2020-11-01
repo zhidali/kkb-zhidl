@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
-    "@babel/plugin-proposal-decorators": "^7.12.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
     "@svgr/webpack": "5.4.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -55,6 +54,7 @@
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "5.0.2",
     "rc-field-form": "^1.13.0",
+    "rc-form": "^2.4.11",
     "react": "^17.0.1",
     "react-app-polyfill": "^2.0.0",
     "react-app-rewired": "^2.1.6",
@@ -160,6 +160,17 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.12.1"
   }
 }
