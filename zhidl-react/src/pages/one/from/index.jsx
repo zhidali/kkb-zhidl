@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MyRCForm from './MyRCFrom';
-// import {MyRCFieldForm} from './MyRCFieldForm';
+// import MyRCForm from './MyRCFrom';
+import MyRCFieldForm from './MyRCFieldForm.jsx';
 
 class From extends Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class From extends Component {
     return ( 
       <div>
         <h2>from</h2>
-        {/* <MyRCFieldForm /> */}
-        <MyRCForm />
+        <MyRCFieldForm />
+        {/* <MyRCForm /> */}
       </div>
      );
   }
