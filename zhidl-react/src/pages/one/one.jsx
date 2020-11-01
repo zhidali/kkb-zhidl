@@ -10,8 +10,8 @@ class One extends Component {
 	render() {
 		return (
 			<div>
-        <Context />
-				<Hoc />
+        {/* <Context /> */}
+				{/* <Hoc /> */}
 				<From />
 			</div>
 		);
