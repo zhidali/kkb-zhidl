@@ -4,15 +4,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './reactapi/index.jsx';
 
+// Context
+import One from './pages/one/one.jsx'
 // 安装antd yarn add antd
 // 按需加载 antd
 // yarn add react-app-rewired babel-plugin-import customize-cra 
 import 'antd/dist/antd.css';
 import Button from 'antd/es/button'
-
+import './index.less';
 import { Provider } from 'react-redux';
 import store from './reactapi/react-redux/store';
-import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -22,8 +23,11 @@ function renderPage() {
 				{/* <React.StrictMode>
 			</React.StrictMode> */}
 			<div>
-					<Button type="default">1111</Button>
-					<Index />
+					{/* <Button type="default">1111</Button> */}
+
+					{/* <Index /> */}
+
+					<One />
 			</div>
 		</Provider>
 		,
