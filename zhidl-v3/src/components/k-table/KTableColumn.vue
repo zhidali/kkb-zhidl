@@ -1,4 +1,7 @@
+
 <template>
+    <!-- 暗号1 杨哥喊你来搬砖 -->
+    <!-- 暗号2 see you next time -->
     <!-- 每一项 -->
     <div
         class='k-table-column'
@@ -11,13 +14,13 @@
                 v-if="isShowSort(prop)"
             >
                 <span
-                    :class="defaultSort.order === 'ascending' ? 'act' : ''"
+                    :class="isSortAsc?'act' : ''"
                     @click="tabSort"
                 >
                     升序
                 </span>
                 <span
-                    :class="defaultSort.order === 'descending' ? 'act' : ''"
+                    :class="isSortAsc? '' : 'act'"
                     @click="tabSort"
                 >降序</span>
             </div>
@@ -62,19 +65,35 @@
     export default {
         name: 'KTableColumn',
         components: {},
+        inheritAttrs: false,
+        props: {
+            sortable: {
+                type: Boolean,
+                default: false,
+            },
+        },
         setup(props, { attrs, emit, slots }) {
             // data数据
             const d = reactive(inject('data', []));
             let sortD = inject('defaultSort', {});
-            if(!sortD.order){
-              sortD.order = 'ascending'
-            }
-            const defaultSort = reactive(sortD);
             
-            // ascending 升序
+            // ascending 升序 默认
             // descending 降序
+
+            if (!sortD.order) {
+                sortD.order = 'ascending';
+            }
+            
+            const defaultSort = reactive(sortD);
+
+            const isSortAsc = computed(() => {
+                return defaultSort.order === 'ascending' ? true : false;
+            });
             const isShowSort = computed(() => {
                 return (prop) => {
+                    if (props.sortable) {
+                        return true;
+                    }
                     return defaultSort.prop && defaultSort.prop === prop;
                 };
             });
@@ -98,10 +117,16 @@
                 };
             });
 
+            if (!isSortAsc) {
+                d.reverse();
+            }
+
+            // 升序倒序
             const tabSort = () => {
-                defaultSort.order = defaultSort.order === 'ascending' ? 'descending' : 'ascending';
+                defaultSort.order = (isSortAsc.value ? 'descending' : 'ascending');
                 d.reverse();
             };
+
             return {
                 d,
                 list,
@@ -111,6 +136,7 @@
                 isShowSort,
                 defaultSort,
                 tabSort,
+                isSortAsc
             };
         },
     };

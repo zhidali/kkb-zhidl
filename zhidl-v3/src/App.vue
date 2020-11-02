@@ -1,7 +1,8 @@
 <template>
 <div>
-  <k-table :data="tableData" :default-sort="{prop: 'name'}">
-    <k-table-column prop="date" lable="时间" ></k-table-column>
+  <!-- descending | ascending -->
+  <k-table :data="tableData" :default-sort="{prop: 'name', order: 'descending'}">
+    <k-table-column prop="date" lable="时间" sortable></k-table-column>
 
     <k-table-column prop="name" lable="姓名" />
     <k-table-column prop="address" lable="地址" />
