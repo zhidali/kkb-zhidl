@@ -6,15 +6,20 @@ import Index from './reactapi/index.jsx';
 
 // Context
 // import One from './pages/one/one.jsx'
-import Two from './pages/two/Two.jsx';
+// import Two from './pages/two/Two.jsx';
+import Three from './pages/three/Three'
 // 安装antd yarn add antd
 // 按需加载 antd
 // yarn add react-app-rewired babel-plugin-import customize-cra 
 import 'antd/dist/antd.css';
 import Button from 'antd/es/button'
 import './index.less';
+
 import { Provider } from 'react-redux';
-import store from './reactapi/react-redux/store';
+
+// import store from './reactapi/react-redux/store';
+import store from './pages/two/store/store';
+
 
 import reportWebVitals from './reportWebVitals';
 
@@ -30,7 +35,9 @@ function renderPage() {
 
 					{/* <One /> */}
 
-					<Two />
+					{/* <Two /> */}
+
+					<Three />
 			</div>
 		</Provider>
 		,

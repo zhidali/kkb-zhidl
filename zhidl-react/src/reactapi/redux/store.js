@@ -1,5 +1,6 @@
 import {
-  createStore
+  createStore,
+  combineReducers
 } from 'redux';
 
 
@@ -17,6 +18,8 @@ function counterReducer(state = 0, action) {
   }
 }
 
-const store = createStore(counterReducer);
+const store = createStore(combineReducers({
+  count: counterReducer
+}));
 
 export default store;
