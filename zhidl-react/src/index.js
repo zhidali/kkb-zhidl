@@ -7,7 +7,8 @@ import Index from './reactapi/index.jsx';
 // Context
 // import One from './pages/one/one.jsx'
 // import Two from './pages/two/Two.jsx';
-import Three from './pages/three/Three'
+// import Three from './pages/three/Three'
+import Four from './pages/four/Four';
 // 安装antd yarn add antd
 // 按需加载 antd
 // yarn add react-app-rewired babel-plugin-import customize-cra 
@@ -37,7 +38,9 @@ function renderPage() {
 
 					{/* <Two /> */}
 
-					<Three />
+					{/* <Three /> */}
+
+					<Four />
 			</div>
 		</Provider>
 		,

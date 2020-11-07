@@ -26,7 +26,7 @@ export default connect(
   // mapStateToProps 把state映射到props上
   state => {
     return ({
-      num: state
+      num: state.count
     })
   },
   // mapDispatchProps 把dispatch映射到props上

@@ -19,7 +19,7 @@ class Redux extends Component {
 		return (
 			<div>
 				<h2>redux</h2>
-				<div>{store.getState()}</div>
+				<div>{store.getState().count}</div>
 				<button onClick={() => store.dispatch({ type: 'ADD' })}>store + 1</button>
 			</div>
 		);

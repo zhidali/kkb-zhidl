@@ -23,36 +23,38 @@ class Index extends Component {
   }
   render() { 
     return ( <div className={style.app}>
-			<SetState />
+			{/* <SetState /> */}
 
-			<Children name="this.props.children">
-				{/* <div>
-					子元素s
-				</div> */}
-				
-				{/* 具名插槽 */}
-				{
-					{
-						content: (
-							<div>我是context传入过来的</div>
-						),
-						text: '我是text传入的文本',
-						btnClick: () => {console.log('我是btnClick传入的事件')}
-					}
-				}
-			</Children>
 			
-      <Redux />
+			
+      {/* <Redux /> */}
 
-      <ReactRedux />
+      {/* <ReactRedux /> */}
 
 			<ReactRouter />
 
-			<PureCom />
+			{/* <PureCom /> */}
 
-			<LifeCycle />
+			{/* <LifeCycle /> */}
 		</div> );
   }
 }
  
 export default Index;
+
+
+
+
+
+
+{/* <Children name="this.props.children">
+	{
+		{
+			content: (
+				<div>我是context传入过来的</div>
+			),
+			text: '我是text传入的文本',
+			btnClick: () => {console.log('我是btnClick传入的事件')}
+		}
+	}
+</Children> */}
