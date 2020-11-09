@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import {RouterContext} from "./RouterContext";
 
 const withRouter = WrappedComponent => props => {

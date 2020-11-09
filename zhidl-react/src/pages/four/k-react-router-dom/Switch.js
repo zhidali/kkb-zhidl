@@ -13,8 +13,9 @@ class Switch extends Component {
           const location = this.props.location || context.location;
           let match; //标记匹配
           let element; //记录匹配的元素
-
+          
           React.Children.forEach(this.props.children, child => {
+            
             if (match == null && React.isValidElement(child)) {
               element = child;
 

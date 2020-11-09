@@ -24,7 +24,8 @@ export default class Route extends Component {
           // 不match children(function), null
           return (
             <RouterContext.Provider value={props}>
-              {match
+              {
+              match
                 ? children
                   ? typeof children === "function"
                     ? children(props)
@@ -36,7 +37,8 @@ export default class Route extends Component {
                   : null
                 : typeof children === "function"
                 ? children(props)
-                : null}
+                : null
+                }
             </RouterContext.Provider>
           );
         }}

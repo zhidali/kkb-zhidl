@@ -22,9 +22,13 @@ import {
   useLocation,
   useRouteMatch,
   useParams,
-  withRouter
-  // Redirect
+  withRouter,
+  // Redirect,
+  Prompt
 } from "./k-react-router-dom/";
+
+
+// import { Prompt } from './k-react-router-dom.'
 
 import HomePage from "./view/HomePage";
 import UserPage from "./view/UserPage";
@@ -80,62 +84,65 @@ function App() {
 
 export default App;
 
-// @withRouter
-// class Product extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {confirm: false};
-//   }
-//   render() {
-//     const {match} = this.props;
-//     const {url} = match;
-//     console.log(match, 'match');
-//     const {id} = match.params;
+@withRouter
+class Product extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {confirm: true};
 
-//     return (
-//       <div>
-//         Product:{id}
-//         <Link to={url + "/detail"}>详情</Link>
-//         <Route path={url + "/detail"} component={Detail} />
-//         {/* <Prompt
-//           when={this.state.confirm}
-//           // message="Are you sure you want to leave?"
-//           message={location => {
-//             return "Are you sure you want to leave-fun";
-//           }}
-//         /> */}
-//       </div>
-//     );
-//   }
-// }
+  }
+  render() {
+    console.log(this, 'this');
+    const {match} = this.props;
+    const {url} = match;
+    const {id} = match.params;
 
-function Product(props) {
-  const history = useHistory();
-  const location = useLocation();
-  const match = useRouteMatch();
-  const params = useParams();
-
-  console.log("props", match, params, history, location); //sy-log
-  // const {match} = props;
-  const {url} = match;
-  const {id} = match.params;
-
-
-  return (
-    <div>
-      Product:{id}
-      <Link to={url + "/detail"}>详情</Link>
-      
-      <Switch>
-        <Route exact path={url + "/"} component={DefaultDetail} />
+    return (
+      <div>
+        Product:{id}
+        <Link to={url + "/detail"}>详情</Link>
         <Route path={url + "/detail"} component={Detail} />
-      </Switch>
-    </div>
-  );
+
+        <Prompt
+          when={this.state.confirm}
+          // message="Are you sure you want to leave?"
+          message={location => {
+            return "Are you sure you want to leave-fun";
+          }}
+        />
+
+      </div>
+    );
+  }
 }
 
+// function Product(props) {
+//   const history = useHistory();
+//   const location = useLocation();
+//   const match = useRouteMatch();
+//   const params = useParams();
+
+//   console.log("props", match, params, history, location); //sy-log
+//   // const {match} = props;
+//   const {url} = match;
+//   const {id} = match.params;
+
+
+//   return (
+//     <div>
+//       Product:{id}
+//       <Link to={url + "/detail"}>详情</Link>
+      
+//       <Switch>
+//         <Route exact path={url + "/"} component={DefaultDetail} />
+//         <Route path={url + "/detail"} component={Detail} />
+//       </Switch>
+//     </div>
+//   );
+// }
+
 function Detail(props) {
-  console.log("Detail props", props); //sy-log
+  // console.log("Detail props", props); //sy-log
   return <div>Detail</div>;
 }
 function DefaultDetail(props) {
@@ -144,12 +151,12 @@ function DefaultDetail(props) {
 
 
 function children(props) {
-  console.log("children props", props); //sy-log
+  // console.log("children props", props); //sy-log
 
   return <div>children</div>;
 }
 
 function render(props) {
-  console.log("render props", props); //sy-log
+  // console.log("render props", props); //sy-log
   return <div>render</div>;
 }
