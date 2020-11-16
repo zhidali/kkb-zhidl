@@ -10,7 +10,8 @@ class Context extends Component {
 		super(props);
 		this.state = {
       theme: {
-        color: 'red'
+        color: 'red',
+        name: 222
       },
       user: {
         name: '小明'
@@ -18,17 +19,15 @@ class Context extends Component {
     };
 	}
 	render() {
-    const {theme} = this.state;
+    const {theme, user} = this.state;
 		return (
 			<div>
         <h2>context</h2>  
         {/* ThemeProvide value向下传递 子组件中可以使用 this.context */}
         <ThemeProvide value={theme}>
-
-          <ContextTypePage />
-          <UseContextPage />
-          <ConsumerPage />
-          
+            <ContextTypePage />
+            <UseContextPage />
+            <ConsumerPage />
         </ThemeProvide>
 			</div>
 		);

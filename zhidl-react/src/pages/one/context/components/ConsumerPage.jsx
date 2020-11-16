@@ -13,11 +13,14 @@ class ConsumerPage extends Component {
         ConsumerPage
         <ThemeConsumer>
           {
-            (themeContext) => (
-              <div>
-                color: {themeContext.color}
-              </div>
-            )
+            (themeContext) => {
+              console.log(themeContext);
+              return (
+                <div>
+                 consumer color: {themeContext.name}
+                </div>
+              )
+            }
           }
         </ThemeConsumer>
       </div>

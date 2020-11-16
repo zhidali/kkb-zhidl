@@ -24,7 +24,7 @@ static contextType = ThemeContext;
 
 第一种使用方式：contextType 只能用在类组件当中 只能订阅单一的contextType
 第二种使用方式：useContext() 只能用在函数组件和自定义hook中
-第三种使用方式：ThemeConsumer， 可以用在函数组件和类组件中，也能订阅多个context中
+第三种使用方式：Consumer， 可以用在函数组件和类组件中，也能订阅多个context中
 
 
 context不建议使用
