@@ -8,7 +8,8 @@ import Index from './reactapi/index.jsx';
 // import One from './pages/one/one.jsx'
 // import Two from './pages/two/Two.jsx';
 // import Three from './pages/three/Three'
-import Four from './pages/four/Four';
+// import Four from './pages/four/Four';
+import Five from './pages/five/Five.jsx';
 // 安装antd yarn add antd
 // 按需加载 antd
 // yarn add react-app-rewired babel-plugin-import customize-cra 
@@ -23,6 +24,7 @@ import store from './pages/two/store/store';
 
 
 import reportWebVitals from './reportWebVitals';
+
 
 function renderPage() {
 	ReactDOM.render(
@@ -40,7 +42,8 @@ function renderPage() {
 
 					{/* <Three /> */}
 
-					<Four />
+					{/* <Four /> */}
+					<Five />
 			</div>
 		</Provider>
 		,
