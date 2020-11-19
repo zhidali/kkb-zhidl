@@ -34,9 +34,9 @@ function renderPage() {
 			<div>
 					{/* <Button type="default">1111</Button> */}
 
-					{/* <Index /> */}
+					<Index />
 
-					<One />
+					{/* <One /> */}
 
 					{/* <Two /> */}
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // 模块化样式
 import style from './index.module.css';
+
 // setState用法
 import SetState from './SetState.jsx';
 // this.props.children
@@ -20,10 +21,16 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {  }
-  }
+	}
+	click = (a) => {
+		console.log(a, 222)
+	}
   render() { 
     return ( <div className={style.app}>
-			{/* <SetState /> */}
+			
+			<SetState click={this.click} >
+				div
+			</SetState>
 
 			
 			
@@ -31,7 +38,7 @@ class Index extends Component {
 
       {/* <ReactRedux /> */}
 
-			<ReactRouter />
+			{/* <ReactRouter /> */}
 
 			{/* <PureCom /> */}
 
@@ -41,6 +48,7 @@ class Index extends Component {
 }
  
 export default Index;
+
 
 
 

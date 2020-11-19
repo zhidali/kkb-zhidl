@@ -4,58 +4,48 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			text: 'setState 介绍',
-			num: 0
+			num: 0,
+			num1: 1
 		};
 	}
 
-	add = (v) => {
-		// setState 在合成事件中 和 生命周期中是异步的，这里说的异步其实就是批量更新，达到了优化性能的目的
-		// this.setState({
-		// 	num: this.state.num + v
-		// });
-
-    // setState在setTimeout中是同步的
+	click2 = (a) => {
 		// setTimeout(() => {
-		// 	this.setState({
-		// 		num: this.state.num + v
-    //   });
-    //   console.log(this.state.num);
-    // }, 0);
-    
 
-    // this.setState({
-    //   num: this.state.num + v
-    // });
-    // console.log(this.state.num);
-
-
-    // this.state传入函数
-    this.setState((state) => {
-      return {
-        num: state.num + v
-      }
-    }, () => {
-      console.log(this.state.num)
-    });
-
+		// }, 1000)
+		this.setNum(a);
 	};
 
-	// 组件挂载之后执行
-	componentDidMount() {
-    // setState在原生事件中是同步的
-    document.getElementById('text').addEventListener('click', 
-    () => {
-      this.add(1);
-    });
-  }
-	// 组件卸载之前执行
-	componentWillUnmount() {}
+	setNum(a) {
+		// this.setState((state) => ({ num: state.num + a }));
+
+		this.setState({
+			num: this.state.num + a
+		})
+		
+	}
 	render() {
-		return <div id="text">
-			<h2>{this.state.text}</h2>
-		</div>;
+		console.log('render');
+		let { num, num1 } = this.state;
+		return (
+			<div onClick={() => this.click2(1)}>
+				app
+				<div>{num}</div>
+				<div>{num1}</div>
+			</div>
+		);
 	}
 }
 
 export default App;
+
+// export default function FuncApp(props) {
+// 	console.log(props);
+
+// 	let aClick = (a) => {
+// 		props.click(a);
+// 	}
+// 	return (
+// 		<div onClick={() => aClick('aaa')}>1111</div>
+// 	)
+// };
