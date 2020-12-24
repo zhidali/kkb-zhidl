@@ -29,3 +29,7 @@ webpack只支持 .js .json 类型的模块
 
 plugin
 对webpack的一个补充
+
+
+
+browserslist

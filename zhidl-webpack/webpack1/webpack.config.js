@@ -2,11 +2,11 @@
  * @author: zhidl
  * @Date: 2020-12-21 21:09:16
  * @description: 
- * @LastEditTime: 2020-12-22 23:11:09
+ * @LastEditTime: 2020-12-24 23:31:56
  * @LastEditors: zhidl
  */
 const path = require('path');
-
+// const miniCssExtractPlugin = require('mini-css-extract-plugin');
 // const htmlWebpackPlugin = require()
 module.exports = {
   // 但页面入口
@@ -14,7 +14,6 @@ module.exports = {
   // 多入口 对应 多出口
   // ertry 支持 字符串 对象 数组
   entry: {
-    main: './src/index.js',
     a: './src/a.js'
   },
   // 数组 单页面应用， 使用的少
@@ -27,6 +26,9 @@ module.exports = {
     // [name] 占位符， 对应上方entry
     filename: '[name].js'
   },
+  resolveLoader: {
+    modules: ['node_modules', './myLoaders']
+  },
   module: {
     rules: [
       {
@@ -35,9 +37,36 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          // miniCssExtractPlugin.loader,
+          'zhidl-style-loader',
+          'zhidl-css-loader',
+          // 'postcss-loader',
+          'zhidl-less-loader'
+        ]
       }
+      // {
+      //   test: /\.js$/,
+      //   use: [
+          
+      //     {
+      //       loader: 'my-loader.js',
+      //       options: {
+      //         info: 'ppppp'
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
+  plugins: [
+    // new miniCssExtractPlugin({
+    //   filename: '[name].css'
+    // })
+  ],
   // node development production
   mode: 'development'
 }
