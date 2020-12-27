@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _a_less__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./a.less */ \"./src/a.less\");\n/* harmony import */ var _a_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_a_less__WEBPACK_IMPORTED_MODULE_0__);\n/*\n * @author: zhidl\n * @Date: 2020-12-22 21:45:15\n * @description: \n * @LastEditTime: 2020-12-24 23:32:51\n * @LastEditors: zhidl\n */\n\nconsole.log('hello webpack');\n\n//# sourceURL=webpack:///./src/a.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _a_less__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./a.less */ \"./src/a.less\");\n/*\n * @author: zhidl\n * @Date: 2020-12-22 21:45:15\n * @description: \n * @LastEditTime: 2020-12-24 23:32:51\n * @LastEditors: zhidl\n */\n\nconsole.log('hello webpack');\n\n//# sourceURL=webpack:///./src/a.js?");
 
 /***/ }),
 
@@ -102,10 +102,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _a_l
 /*!********************!*\
   !*** ./src/a.less ***!
   \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("\n    const tag = document.createElement('style');\n    tag.innerHTML = \"body {\\n  display: flex;\\n}\\nbody div {\\n  border: 2px solid pink;\\n}\\n\";\n    document.head.appendChild(tag);\n  \n\n//# sourceURL=webpack:///./src/a.less?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/a.less?");
 
 /***/ })
 

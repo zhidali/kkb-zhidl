@@ -2,8 +2,8 @@
  * @author: zhidl
  * @Date: 2020-12-22 21:45:15
  * @description: 
- * @LastEditTime: 2020-12-24 23:32:51
+ * @LastEditTime: 2020-12-27 21:30:56
  * @LastEditors: zhidl
  */
-import './a.less'
+import './a.less';
 console.log('hello webpack');

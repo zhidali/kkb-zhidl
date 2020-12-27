@@ -2,11 +2,11 @@
  * @author: zhidl
  * @Date: 2020-12-21 21:09:16
  * @description: 
- * @LastEditTime: 2020-12-24 23:31:56
+ * @LastEditTime: 2020-12-27 20:43:22
  * @LastEditors: zhidl
  */
 const path = require('path');
-// const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
 // const htmlWebpackPlugin = require()
 module.exports = {
   // 但页面入口
@@ -41,12 +41,22 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          // miniCssExtractPlugin.loader,
-          'zhidl-style-loader',
-          'zhidl-css-loader',
-          // 'postcss-loader',
-          'zhidl-less-loader'
+          miniCssExtractPlugin.loader,
+          // 'zhidl-style-loader',
+          'css-loader',
+          'postcss-loader',
+          'less-loader'
+          // 'zhidl-less-loader'
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]'
+          }
+        }
       }
       // {
       //   test: /\.js$/,
@@ -63,9 +73,9 @@ module.exports = {
     ]
   },
   plugins: [
-    // new miniCssExtractPlugin({
-    //   filename: '[name].css'
-    // })
+    new miniCssExtractPlugin({
+      filename: 'css/[name].css'
+    })
   ],
   // node development production
   mode: 'development'
