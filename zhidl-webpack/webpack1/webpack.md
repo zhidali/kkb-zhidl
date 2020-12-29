@@ -32,4 +32,10 @@ plugin
 
 
 
-browserslist
+
+[name] 文件名字占位符
+[ext] 文件后缀名占位符
+
+hash： 以项目为单位，项目内容没改变，则会生成新的hash，内容不变则hash不变
+chunkhash：以chunk为单位，当一个文件内容改变，则整个chunk组的模块hash都会改变
+contenthash：以自身内容为单位，

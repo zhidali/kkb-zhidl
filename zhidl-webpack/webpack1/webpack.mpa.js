@@ -2,23 +2,54 @@
  * @author: zhidl
  * @Date: 2020-12-21 21:09:16
  * @description: 
- * @LastEditTime: 2020-12-27 23:45:17
+ * @LastEditTime: 2020-12-28 00:32:28
  * @LastEditors: zhidl
  */
 const path = require('path');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const htmlWebpackPlugin = require()
+
+const glob = require('glob');
+
+
+// 等价交换， 炼金术不变的原则
+const setMPA = () => {
+  const entry = {};
+  const htmlwebpackplugins = [];
+
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'));
+  console.log(entryFiles, 'entryFiles');
+  entryFiles.map((item, index) => {
+    const entryFile = entryFiles[index];
+    const match = entryFile.match(/src\/(.*)\/index\.js$/);
+    const pageName = match[1];
+    entry[pageName] = entryFile;
+    htmlwebpackplugins.push(
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, `./src/${pageName}/${pageName}.html`),
+        filename: `${pageName}/${pageName}.html`,
+        chunks: [pageName]
+      })
+    )
+  })
+
+
+  return {
+    entry,
+    htmlwebpackplugins
+  }
+}
+
+
+const {entry, htmlwebpackplugins} = setMPA();
+
 module.exports = {
   // 但页面入口
   // entry: './src/index.js',
   // 多入口 对应 多出口
   // ertry 支持 字符串 对象 数组
-  entry: {
-    index: './src/index.js',
-    a: './src/a.js'
-  },
+  entry,
   // 数组 单页面应用， 使用的少
   // entry: ['./src/index.js', './src/a.js'],
   // 出口
@@ -27,7 +58,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     // 输出的文件名称
     // [name] 占位符， 对应上方entry
-    filename: '[name].js'
+    filename: 'js/[name].js'
   },
   resolveLoader: {
     modules: ['node_modules', './myLoaders']
@@ -88,11 +119,12 @@ module.exports = {
     new miniCssExtractPlugin({
       filename: 'css/[name].css'
     }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      chunks: ['index']
-    }),
+    ...htmlwebpackplugins,
+    // new HtmlWebpackPlugin({
+    //   template: './src/index.html',
+    //   filename: 'index.html',
+    //   chunks: ['index']
+    // }),
     new CleanWebpackPlugin()
   ],
   // node development production
