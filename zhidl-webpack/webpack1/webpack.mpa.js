@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2020-12-21 21:09:16
  * @description: 
- * @LastEditTime: 2020-12-28 00:32:28
+ * @LastEditTime: 2020-12-29 21:49:27
  * @LastEditors: zhidl
  */
 const path = require('path');
@@ -128,5 +128,6 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
   // node development production
-  mode: 'development'
+  mode: 'development',
+  devtool: 'sourcemap'
 }

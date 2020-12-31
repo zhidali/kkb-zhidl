@@ -2,13 +2,18 @@
  * @author: zhidl
  * @Date: 2020-12-21 21:09:16
  * @description: 
- * @LastEditTime: 2020-12-27 23:45:17
+ * @LastEditTime: 2020-12-30 00:13:40
  * @LastEditors: zhidl
  */
 const path = require('path');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const zhidlwebpackplugin = require('./zhidl-webpack-plugin');
+
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 // const htmlWebpackPlugin = require()
 module.exports = {
   // 但页面入口
@@ -16,8 +21,7 @@ module.exports = {
   // 多入口 对应 多出口
   // ertry 支持 字符串 对象 数组
   entry: {
-    index: './src/index.js',
-    a: './src/a.js'
+    index: './src/index.js'
   },
   // 数组 单页面应用， 使用的少
   // entry: ['./src/index.js', './src/a.js'],
@@ -32,9 +36,9 @@ module.exports = {
   resolveLoader: {
     modules: ['node_modules', './myLoaders']
   },
+
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
         use: [
           'style-loader',
@@ -68,12 +72,19 @@ module.exports = {
             limit: 1024 * 10
           }
         }
-      }
+      },
+      // {
+      //   test: /\.js$/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {}
+      //   }
+      // }
       
       // {
       //   test: /\.js$/,
       //   use: [
-          
+
       //     {
       //       loader: 'my-loader.js',
       //       options: {
@@ -93,8 +104,15 @@ module.exports = {
       filename: 'index.html',
       chunks: ['index']
     }),
+    new zhidlwebpackplugin(),
     new CleanWebpackPlugin()
   ],
   // node development production
-  mode: 'development'
+  mode: 'development',
+  devtool: 'sourcemap',
+  devServer: {
+    contentBase: './dist',
+    port: 8081,
+    open: true
+  }
 }

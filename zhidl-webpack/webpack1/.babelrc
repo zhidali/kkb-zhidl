@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        // 目标版本
+        // "targets": {},
+        "corejs": 2, // 不推荐使用 polyfill
+        // entry | usage | false
+        // 按需加载 使用解析js
+        "@babel/preset-env": "usage"
+      }
+    ]
+    // "@babel/preset-react",
+    // "@babel/preset-typescript"
+  ]
+}
