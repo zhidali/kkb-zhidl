@@ -1,0 +1,145 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+            "path" : "pages/login/login",
+            "style" : {
+				"navigationBarTitleText": "uni-huanxin-im"
+			}
+        },
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+        ,{
+            "path" : "pages/register/register",
+            "style" : {
+				"navigationBarTitleText": "uni-huanxin-im"
+			}
+        }
+        ,{
+            "path" : "pages/login_token/login_token",
+            "style" : {
+				"navigationBarTitleText": "uni-huanxin-im"
+			}
+        }
+        ,{
+            "path" : "pages/chat/chat",
+            "style" : {
+				"navigationBarTitleText": "聊天",
+				// "enablePullDownRefresh": true,
+				"scrollIndicator": "none",
+				"app-plus": {
+					"softinputNavBar": "none",
+					"scrollIndicator": "none"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/setting/setting",
+            "style" : {
+				"navigationBarTitleText": "设置"
+			}
+        }
+        ,{
+            "path" : "pages/chatroom/chatroom",
+            "style" : {
+				"scrollIndicator": "none",
+				"navigationBarTitleText": "admin"
+			}
+        }
+        ,{
+            "path" : "pages/groupChatRoom/groupChatRoom",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/main/main",
+            "style" : {
+				"navigationBarTitleText": "通讯录"
+			}
+        }
+        ,{
+            "path" : "pages/add_contact/add_contact",
+            "style" : {
+				"navigationBarTitleText": "添加好友"
+			}
+        }
+        ,{
+            "path" : "pages/notification/notification",
+            "style" : {
+				"navigationBarTitleText": "通知"
+			}
+        }
+        ,{
+            "path" : "pages/notification_friend/notification_friend",
+            "style" : {
+				"navigationBarTitleText": "好友请求"
+			}
+        }
+        ,{
+            "path" : "pages/notification_group/notification_group",
+            "style" : {
+				"navigationBarTitleText": "群组邀请"
+			}
+        }
+        ,{
+            "path" : "pages/setting/general",
+            "style" : {
+				"navigationBarTitleText": "通用"
+			}
+        }
+        ,{
+            "path" : "pages/groups/groups",
+            "style" : {
+				"navigationBarTitleText": "群组"
+			}
+        }
+        ,{
+            "path" : "pages/add_groups/add_groups",
+            "style" : {
+				"navigationBarTitleText": "新建群组"
+			}
+        }
+        ,{
+            "path" : "pages/groupSetting/groupSetting",
+            "style" : {
+				"navigationBarTitleText": "群资料"
+			}
+        }
+    ],
+	
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "IM",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#7A7E83",
+	    "selectedColor": "#085AB8",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/chat/chat",
+	        "iconPath": "static/images/session@2x.png",
+	        "selectedIconPath": "static/images/sessionhighlight@2x.png",
+	        "text": "聊天"
+	    },{
+	        "pagePath": "pages/main/main",
+	        "iconPath": "static/images/comtacts@2x.png",
+	        "selectedIconPath": "static/images/comtactshighlight@2x.png",
+	        "text": "通讯录"
+	    },{
+		    "pagePath": "pages/notification/notification",
+		    "iconPath": "static/images/notice.png",
+		    "selectedIconPath": "static/images/noticeActive.png",
+		    "text": "通知"
+		},{
+	        "pagePath": "pages/setting/setting",
+	        "iconPath": "static/images/setting@2x.png",
+	        "selectedIconPath": "static/images/settinghighlight@2x.png",
+	        "text": "设置"
+	    }]
+	}
+}

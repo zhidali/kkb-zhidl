@@ -21,7 +21,7 @@ import { Provider } from 'react-redux';
 
 // import store from './reactapi/react-redux/store';
 import store from './pages/two/store/store';
-
+import List from './pages/list/list';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -34,7 +34,7 @@ function renderPage() {
 			<div>
 					{/* <Button type="default">1111</Button> */}
 
-					<Index />
+					{/* <Index /> */}
 
 					{/* <One /> */}
 
@@ -44,6 +44,7 @@ function renderPage() {
 
 					{/* <Four /> */}
 					{/* <Five /> */}
+					<List />
 			</div>
 		</Provider>
 		,
