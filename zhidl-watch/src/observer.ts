@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:39:23
  * @description: 
- * @LastEditTime: 2021-05-18 10:29:10
+ * @LastEditTime: 2021-05-18 11:41:17
  * @LastEditors: zhidl
  */
 import Dep from './dep';
@@ -103,6 +103,7 @@ function defineReactive(obj:Object, key: string, val?: any) {
     get() {
       const value = getter ? getter.call(obj) : val;
       if(Dep.target) {
+        
         dep.depend(); // dep 和 watcher 互相添加映射关系
         // 子Ob实例也要添加映射关系
         if(childOb) {

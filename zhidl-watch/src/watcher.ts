@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:37:52
  * @description: 
- * @LastEditTime: 2021-05-18 10:50:15
+ * @LastEditTime: 2021-05-18 11:27:14
  * @LastEditors: zhidl
  */
 
@@ -29,7 +29,6 @@ export default class Watcher {
   newDepIds: SimpleSet;
   getter: Function;
   deep:boolean;
-  user:boolean;
 	constructor(vm: Component, expOrFn: string | Function, cb: Function, options?: Object, isRenderWatcher?: boolean) {
     this.vm = vm;
     this.active = true;
@@ -43,20 +42,19 @@ export default class Watcher {
     if(options) {
       // @ts-ignore
       this.deep = !!options.deep;
-      // @ts-ignore
-      this.user = !!options.user
     }
     if(typeof expOrFn === 'function') {
       this.getter = expOrFn;
     } else {
       this.getter = parsePath(expOrFn);
     }
-    
     this.value = this.get();
+    
   }
 
   get() {
     pushTarget(this);
+    console.log(1111);
     let value;
     const vm = this.vm;
 
@@ -75,7 +73,7 @@ export default class Watcher {
   }
 
   cleanupDeps() {
-    let i = this.deps.length
+    let i = this.deps.length;
     while (i--) {
       const dep = this.deps[i]
       if (!this.newDepIds.has(dep.id)) {
@@ -106,9 +104,15 @@ export default class Watcher {
   run() {
     if(this.active) {
       const value = this.get();
+
       if(value !== this.value || isObject(value) || this.deep) {
+        
         const oldValue = this.value;
+
+        // console.log(value, oldValue, 'watch');
+
         this.value = value;
+
         invokeWithErrorHandling(this.cb, this.vm, [value, oldValue], this.vm, '');
       }
     }

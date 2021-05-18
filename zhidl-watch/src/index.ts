@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-18 10:54:02
+ * @LastEditTime: 2021-05-18 11:42:51
  * @LastEditors: zhidl
  */
 
@@ -22,7 +22,8 @@ import { observe } from './observer';
 	a: {
 		b: {
 			c: 0
-		}
+		},
+		d: [{a:0}]
 	}
 };
 
@@ -33,7 +34,6 @@ function watch(expOrFn: string | Function, cb: any, options?: WatchOptions) {
 	}
 	options = options || {};
 	options.user = true;
-
 	const watcher = new Watcher(vm, expOrFn, cb, options);
 
 	if (options.immediate) {
@@ -60,30 +60,19 @@ function createWatcher(vm: Component, expOrFn: string | Function, handler: any, 
 }
 
 
-
-console.log('111');
 observe(obj);
+// setInterval(() => {
+// 	obj.a.d = 0;
+// }, 1000)
 
-setTimeout(() => {
-	obj.a.b.c++;
-}, 1000)
-
-console.log(obj, 'objs');
+// console.log(obj.a.d, 'objs');
 
 watch(
-	'a',
+	'a.d',
 	(newV, oldV) => {
-		console.log(newV);
+		console.log(newV, oldV, 'bbbb');
 	},
-	{ deep: true }
-);
-
-watch(
-	'a.b',
-	() => {
-		console.log('a.b');
-	},
-	{deep: true}
+	{deep: true, immediate: true}
 )
 
 export default {
