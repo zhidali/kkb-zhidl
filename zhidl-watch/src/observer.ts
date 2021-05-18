@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:39:23
  * @description: 
- * @LastEditTime: 2021-05-12 10:16:56
+ * @LastEditTime: 2021-05-18 10:29:10
  * @LastEditors: zhidl
  */
 import Dep from './dep';
@@ -95,7 +95,7 @@ function defineReactive(obj:Object, key: string, val?: any) {
     val = obj[key]
   }
 
-  let childOb = observe(val);
+  let childOb = observe(val); // 引用类型继续响应式
 
   Object.defineProperty(obj, key, {
     enumerable: true,
@@ -103,7 +103,8 @@ function defineReactive(obj:Object, key: string, val?: any) {
     get() {
       const value = getter ? getter.call(obj) : val;
       if(Dep.target) {
-        dep.depend();
+        dep.depend(); // dep 和 watcher 互相添加映射关系
+        // 子Ob实例也要添加映射关系
         if(childOb) {
           childOb.dep.depend();
           if(Array.isArray(value)) {
@@ -127,11 +128,12 @@ function defineReactive(obj:Object, key: string, val?: any) {
         val = newVal;
       }
 
-      childOb = observe(newVal);
-      dep.notify();
+      childOb = observe(newVal); // 每次设置值如果是对象 数组 还需要深度映射
+      dep.notify(); // 通知更新
     }
   })
 }
+
 
 
 function dependArray (value: Array<any>) {

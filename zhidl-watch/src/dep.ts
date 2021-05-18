@@ -2,16 +2,26 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:39:04
  * @description: 
- * @LastEditTime: 2021-05-12 11:56:22
+ * @LastEditTime: 2021-05-13 11:13:49
  * @LastEditors: zhidl
  */
 
-import Watcher from './watcher';
+import type Watcher from './watcher';
+import { remove } from './util';
+
+let uid = 0;
 
 export default class Dep{
   static target: Watcher | null | undefined;
-  id: number;
+  id: number; // dep唯一标示id
   subs: Array<Watcher>;
+  constructor () {
+    this.id = uid++
+    this.subs = []
+  }
+  addSub (sub: Watcher) {
+    this.subs.push(sub)
+  }
   depend() {
     if(Dep.target) {
       Dep.target.addDep(this);
@@ -23,6 +33,9 @@ export default class Dep{
     for (let i = 0, l = subs.length; i < l; i++) {
       subs[i].update()
     }
+  };
+  removeSub(sub: Watcher) {
+    remove(this.subs, sub)
   }
 }
 

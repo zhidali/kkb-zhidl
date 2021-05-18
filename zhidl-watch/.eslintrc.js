@@ -6,6 +6,6 @@ module.exports = {
     'no-var': "error",
     'import/no-commonjs': 0,
     // 优先使用 interface 而不是 type
-    "no-unused-vars": ["error", { "args": "after-used" }]
+    // "no-unused-vars": ["error", { "args": "after-used" }]
   }
 }

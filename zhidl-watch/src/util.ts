@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:55:42
  * @description: 
- * @LastEditTime: 2021-05-11 19:19:43
+ * @LastEditTime: 2021-05-13 10:58:42
  * @LastEditors: zhidl
  */
 
@@ -43,3 +43,29 @@ export function isObject (obj: any): boolean {
   return obj !== null && typeof obj === 'object'
 }
 export const hasProto = '__proto__' in {}
+
+
+export function remove (arr: Array<any>, item: any): Array<any> | void {
+  if (arr.length) {
+    const index = arr.indexOf(item)
+    if (index > -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+
+
+const bailRE = /[^\w.$]/
+export function parsePath (path: string): any {
+  if (bailRE.test(path)) {
+    return
+  }
+  const segments = path.split('.')
+  return function (obj) {
+    for (let i = 0; i < segments.length; i++) {
+      if (!obj) return
+      obj = obj[segments[i]]
+    }
+    return obj
+  }
+}
