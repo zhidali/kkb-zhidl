@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-18 11:51:27
+ * @LastEditTime: 2021-05-18 13:59:50
  * @LastEditors: zhidl
  */
 
@@ -27,7 +27,7 @@ import { observe } from './observer';
 	}
 };
 
-function watch(expOrFn: string | Function, cb: any, options?: WatchOptions) {
+function watch(expOrFn: string | Function, cb: any, options?: WatchOptions): () => void {
 	const vm: Component = obj;
 	if (isPlainObject(cb)) {
 		return createWatcher(vm, expOrFn, cb, options);
@@ -60,19 +60,21 @@ function createWatcher(vm: Component, expOrFn: string | Function, handler: any, 
 
 
 observe(obj);
-// setInterval(() => {
-// 	obj.a.d = 0;
-// }, 1000)
+setInterval(() => {
+	obj.a.b.c ++;
+}, 1000)
 
-// console.log(obj.a.d, 'objs');
-
-watch(
-	'a.d',
+let stop = watch(
+	'a.b.c',
 	(newV, oldV) => {
 		console.log(newV, oldV, 'bbbb');
 	},
 	{deep: true, immediate: true}
 )
+
+setTimeout(() => {
+	stop && stop()
+}, 3000)
 
 export default {
 	watch,
