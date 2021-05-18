@@ -2,13 +2,13 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-18 11:42:51
+ * @LastEditTime: 2021-05-18 11:51:27
  * @LastEditors: zhidl
  */
 
 import { isPlainObject, invokeWithErrorHandling } from './util';
 import Watcher from './watcher';
-import Dep, { pushTarget, popTarget } from './dep';
+import { pushTarget, popTarget } from './dep';
 
 import { observe } from './observer';
 
@@ -33,7 +33,6 @@ function watch(expOrFn: string | Function, cb: any, options?: WatchOptions) {
 		return createWatcher(vm, expOrFn, cb, options);
 	}
 	options = options || {};
-	options.user = true;
 	const watcher = new Watcher(vm, expOrFn, cb, options);
 
 	if (options.immediate) {
