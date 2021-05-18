@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:37:52
  * @description: 
- * @LastEditTime: 2021-05-18 11:27:14
+ * @LastEditTime: 2021-05-18 14:58:41
  * @LastEditors: zhidl
  */
 
@@ -38,7 +38,7 @@ export default class Watcher {
     this.newDeps = [];
     this.depIds = new Set();
     this.newDepIds = new Set();
-
+    
     if(options) {
       // @ts-ignore
       this.deep = !!options.deep;
@@ -49,12 +49,10 @@ export default class Watcher {
       this.getter = parsePath(expOrFn);
     }
     this.value = this.get();
-    
   }
 
   get() {
     pushTarget(this);
-    console.log(1111);
     let value;
     const vm = this.vm;
 

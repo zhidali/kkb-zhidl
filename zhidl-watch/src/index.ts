@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-18 13:59:50
+ * @LastEditTime: 2021-05-18 14:59:20
  * @LastEditors: zhidl
  */
 
@@ -23,7 +23,7 @@ import { observe } from './observer';
 		b: {
 			c: 0
 		},
-		d: [{a:0}]
+		d: [0]
 	}
 };
 
@@ -46,7 +46,7 @@ function watch(expOrFn: string | Function, cb: any, options?: WatchOptions): () 
 	};
 }
 
-//
+
 function createWatcher(vm: Component, expOrFn: string | Function, handler: any, options?: Object) {
 	if (isPlainObject(handler)) {
 		options = handler;
@@ -60,21 +60,32 @@ function createWatcher(vm: Component, expOrFn: string | Function, handler: any, 
 
 
 observe(obj);
-setInterval(() => {
-	obj.a.b.c ++;
-}, 1000)
 
-let stop = watch(
-	'a.b.c',
-	(newV, oldV) => {
-		console.log(newV, oldV, 'bbbb');
+
+// setInterval(() => {
+// 	// obj.a.b.c++;
+
+// 	// if(obj.a.b.c === 3) {
+// 	// 	obj.a.b = {
+// 	// 		c: 0
+// 	// 	}
+// 	// }
+// 	obj.a.d.push(0)
+// }, 1000)
+
+watch(
+	'a.d',
+	(newV) => {
+		console.log(newV, 'bbbb');
 	},
-	{deep: true, immediate: true}
+	{deep: true}
 )
 
-setTimeout(() => {
-	stop && stop()
-}, 3000)
+
+
+// setTimeout(() => {
+// 	stop && stop()
+// }, 3000)
 
 export default {
 	watch,

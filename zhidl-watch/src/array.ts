@@ -2,16 +2,20 @@
  * @author: zhidl
  * @Date: 2021-05-11 19:04:33
  * @description: 
- * @LastEditTime: 2021-05-11 19:12:18
+ * @LastEditTime: 2021-05-18 14:54:16
  * @LastEditors: zhidl
  */
 import { def } from './util';
+
 const arrayProto = Array.prototype;
+
 export const arrayMethods = Object.create(arrayProto);
+
 const methodsToPatch = [ 'push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse' ];
 
 methodsToPatch.forEach(function(method) {
 	const original = arrayProto[method];
+	
 	def(arrayMethods, method, function mutator(...args) {
 		const result = original.apply(this, args);
 		const ob = this.__ob__;
@@ -31,4 +35,5 @@ methodsToPatch.forEach(function(method) {
 		ob.dep.notify();
 		return result;
 	});
+
 });

@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:39:23
  * @description: 
- * @LastEditTime: 2021-05-18 11:41:17
+ * @LastEditTime: 2021-05-18 14:56:07
  * @LastEditors: zhidl
  */
 import Dep from './dep';
@@ -21,7 +21,7 @@ export class Observer {
 		def(value, '__ob__', this);
 		if (Array.isArray(value)) {
 			if (hasProto) {
-				protoAugment(value, arrayKeys);
+				protoAugment(value, arrayMethods);
 			} else {
 				copyAugment(value, arrayMethods, arrayKeys);
 			}
