@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-18 16:34:44
+ * @LastEditTime: 2021-05-19 10:20:19
  * @LastEditors: zhidl
  */
 
@@ -10,7 +10,7 @@ import { isPlainObject, invokeWithErrorHandling } from './util';
 import Watcher from './watcher';
 import { pushTarget, popTarget } from './dep';
 
-import { observe as cloneObserve } from './observer';
+import { observe as cloneObserve} from './observer';
 
 /**
  * watch监听
@@ -18,7 +18,6 @@ import { observe as cloneObserve } from './observer';
  * @param cb 
  * @param options 
  */
-
  export function watch(o: any, expOrFn: string | Function, cb: any, options?: WatchOptions): () => void {
 	const vm: Component = o;
 	if (isPlainObject(cb)) {
@@ -49,7 +48,4 @@ function createWatcher(vm: Component, expOrFn: string | Function, handler: any, 
 	return watch(vm, expOrFn, handler, options);
 }
 
-export function observe(obj) {
-	cloneObserve(obj);
-}
-
+export const observe = cloneObserve;

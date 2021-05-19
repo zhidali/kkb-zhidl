@@ -3,7 +3,7 @@
  * @author: zhidl
  * @Date: 2021-05-18 16:14:21
  * @description: 
- * @LastEditTime: 2021-05-18 16:43:51
+ * @LastEditTime: 2021-05-18 16:58:04
  * @LastEditors: zhidl
  */
 
@@ -36,6 +36,7 @@ watch(k, 'a', (n) => {
 });
 
 o.a.b++;
+
 
 o.a.d.push({a:333});
 o.a.d[0].a = 444;
