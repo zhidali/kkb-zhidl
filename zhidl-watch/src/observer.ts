@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 18:39:23
  * @description: 
- * @LastEditTime: 2021-05-18 14:56:07
+ * @LastEditTime: 2021-05-19 10:54:37
  * @LastEditors: zhidl
  */
 import Dep from './dep';
@@ -12,7 +12,7 @@ import { def, hasOwn, isObject, hasProto, isPlainObject } from './util';
 // 获取数组原型方法
 const arrayKeys = Object.getOwnPropertyNames(arrayMethods);
 
-export class Observer {
+class Observer {
 	value: any;
 	dep: Dep;
 	constructor(value: any) {
@@ -77,7 +77,6 @@ export function observe(value:any): Observer | void{
 
 function defineReactive(obj:Object, key: string, val?: any) {
   const dep = new Dep();
-
   // 获取当前key的属性设置
   // configurable: true 是否可配置 删除
   // enumerable: true 是否可枚举 
@@ -117,7 +116,6 @@ function defineReactive(obj:Object, key: string, val?: any) {
     },
     set(newVal) {
       const value = getter ? getter.call(obj) : val;
-
       if (newVal === value || (newVal !== newVal && value !== value)) {
         return
       }
@@ -145,4 +143,25 @@ function dependArray (value: Array<any>) {
       dependArray(e)
     }
   }
+}
+
+
+export function set(target: Array<any> | Object, key:any, val: any):any {
+  if (Array.isArray(target)) {
+    target.length = Math.max(target.length, key)
+    target.splice(key, 1, val)
+    return val
+  }
+  if (key in target && !(key in Object.prototype)) {
+    target[key] = val
+    return val
+  }
+  const ob = (target as any).__ob__;
+  if (!ob) {
+    target[key] = val
+    return val
+  }
+  defineReactive(ob.value, key, val);
+  ob.dep.notify();
+  return val;
 }

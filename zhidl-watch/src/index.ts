@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-19 10:28:13
+ * @LastEditTime: 2021-05-19 10:52:26
  * @LastEditors: zhidl
  */
 
@@ -10,14 +10,7 @@ import { isPlainObject, invokeWithErrorHandling } from './util';
 import Watcher from './watcher';
 import { pushTarget, popTarget } from './dep';
 
-import { observe as cloneObserve} from './observer';
-
-interface IOptions {
-	/** 是否深度监听 */
-  deep?: boolean;
-	/** 是否立即执行 */
-  immediate?: boolean;
-}
+export * from './observer';
 
 /**
  * watch监听
@@ -54,5 +47,3 @@ function createWatcher(vm: Component, expOrFn: string | Function, handler: any, 
 	}
 	return watch(vm, expOrFn, handler, options);
 }
-
-export const observe = cloneObserve;

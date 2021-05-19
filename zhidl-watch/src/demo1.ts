@@ -3,11 +3,11 @@
  * @author: zhidl
  * @Date: 2021-05-18 16:14:21
  * @description: 
- * @LastEditTime: 2021-05-19 10:30:08
+ * @LastEditTime: 2021-05-19 10:55:13
  * @LastEditors: zhidl
  */
 
-import { watch, observe } from './index';
+import { watch, observe, set } from './index';
 
 let o = {
   a: {
@@ -27,9 +27,9 @@ watch(o, 'a', (n) => {
   console.log(n, '111');
 }, {deep: true});
 
-watch(o.a.d[0], 'a', (n) => {
-  console.log(n, '222');
-});
+// watch(o.a.d[0], 'a', (n) => {
+//   console.log(n, '222');
+// });
 
 watch(k, 'a', (n) => {
   console.log(n, '333');
@@ -37,7 +37,10 @@ watch(k, 'a', (n) => {
 
 o.a.b++;
 
-// o.a.b = 2;
-// o.a.d.push({a:333});
+o.a.d.push({a:333});
 o.a.d[0].a = 444;
-k.a = 10;
+set(o.a, 'e', 111);
+
+k.a = 123;
+
+
