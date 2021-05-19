@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-05-11 16:30:40
  * @description: 
- * @LastEditTime: 2021-05-19 10:20:19
+ * @LastEditTime: 2021-05-19 10:28:13
  * @LastEditors: zhidl
  */
 
@@ -11,6 +11,13 @@ import Watcher from './watcher';
 import { pushTarget, popTarget } from './dep';
 
 import { observe as cloneObserve} from './observer';
+
+interface IOptions {
+	/** 是否深度监听 */
+  deep?: boolean;
+	/** 是否立即执行 */
+  immediate?: boolean;
+}
 
 /**
  * watch监听
