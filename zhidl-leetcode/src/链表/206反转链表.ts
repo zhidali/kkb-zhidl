@@ -2,9 +2,10 @@
  * @author: zhidl
  * @Date: 2021-05-19 15:39:03
  * @description: 
- * @LastEditTime: 2021-05-19 16:47:19
+ * @LastEditTime: 2021-06-22 14:34:30
  * @LastEditors: zhidl
  */
+// @ts-nocheck
 
 class ListNode {
 	val: number;
