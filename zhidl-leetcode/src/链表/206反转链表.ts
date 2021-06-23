@@ -1,67 +1,36 @@
-/*
- * @author: zhidl
- * @Date: 2021-05-19 15:39:03
- * @description: 
- * @LastEditTime: 2021-06-22 14:34:30
- * @LastEditors: zhidl
- */
-// @ts-nocheck
 
-class ListNode {
-	val: number;
-	next: ListNode | null;
-	constructor(val?: number, next?: ListNode | null) {
-		this.val = val === undefined ? 0 : val;
-		this.next = next === undefined ? null : next;
-	}
-}
 
-let obj = {
-	val: 2,
-	next: {
-		val: 3,
-		next: {
-			val: 4,
-			next: null
-		}
+
+
+// pre 指向空
+// cur 指向头
+// next 指向cur下一个节点
+
+
+// 解题思路
+// 创建pre 初始化为空
+// cur为当前头 next指向下一个节点
+// 每次循环 先保存下一个节点内存， 防止丢失
+// 让头部cur.next执行上一层pre
+// cur继续保持下一次链表头
+
+
+// pre | cur  | cur.next
+//     | pre  | cur      | cur.next
+
+function reverseList(head: ListNode | null): ListNode | null {
+	if(!head) return null 
+	let pre:ListNode | null = null, cur = head;
+
+	while(cur) {
+		
+		[cur.next, cur, pre] = [pre, cur.next as ListNode, cur]
+
+		// let next = cur.next;
+		// cur.next = pre;
+		// pre = cur;
+		// cur = next as ListNode;
 	}
+
+	return pre;
 };
-
-// 使用while 相互调换
-const reverseListA = (head: ListNode | null): ListNode | null => {
-	if(!head) {
-		return null;
-	}
-	let prev = null;
-	let cur = head;
-	while (cur) {
-		const { next } = cur;
-		// 保存next
-		cur.next = prev;
-		// @ts-ignore
-		prev = cur;
-		cur = next;
-	}
-
-	return prev;
-};
-
-
-const reverseListB = (head: ListNode | null): ListNode | null => {
-	
-	let reverse = (pre: ListNode | null, cur: ListNode | null) => {
-		if (!cur) return pre;
-		let next = cur.next;
-		cur.next = pre;
-		return reverse(cur, next);
-	};
-
-	return reverse(null, head);
-};
-
- 
-console.log(obj = reverseListA(obj), 'b1');
-console.log(obj = reverseListA(obj), 'b2');
-
-
-export default {}
