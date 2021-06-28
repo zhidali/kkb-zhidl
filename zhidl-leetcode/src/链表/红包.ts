@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-06-23 12:27:20
  * @description: 
- * @LastEditTime: 2021-06-23 12:41:15
+ * @LastEditTime: 2021-06-23 16:01:37
  * @LastEditors: zhidl
  */
 
@@ -111,7 +111,7 @@ const total = arr => arr.result.reduce((acc, i) => acc += i*100, 0) / 100;
 // const test3 = autoRandomRedPackage(10, 10);
 // const test4 = autoRandomRedPackage(100, 10);
 // const test5 = autoRandomRedPackage(100, 11);
-const test6 = autoRandomRedPackage(10, 40);
+const test6 = autoRandomRedPackage(10, 4);
 
 // log(`\ntest =`, test);
 // log(`total =`, test && total(test));
