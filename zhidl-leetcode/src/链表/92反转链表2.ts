@@ -2,25 +2,28 @@
 
 
 
-function reverseBetween(head: ListNode | null, m: number, n: number): ListNode | null {
+function reverseBetween(head: ListNode | null, left: number, right: number): ListNode | null {
 	if(!head) return null;
 	// 虚拟头
-	let hair = {
+	let ret = {
 		val: 0,
-		next: null
+		next: head
 	} as ListNode;
-	hair.next = head;
-	let h = head;
 
-	for(let i = 0; i < m -1; i++) {
-		h = h.next as ListNode;
-	}
-	let dl = h;
-	let dr = h.next;
+	let pre = ret;
 	
-	for(let i = m - 1; i < n; i++) {
-		
-	}
+	let cnt = right - left + 1;
+	pre.next = reverse(pre.next as ListNode, cnt)
+	return ret.next;
+}
 
-	return null;
+
+
+function reverse(head:ListNode, n) {
+	let pre:ListNode | null = null, cur = head;
+	while(n--) {
+		[cur.next, cur, pre] = [pre, cur.next as ListNode, cur];
+	}
+	head.next = cur;
+	return pre;
 }
