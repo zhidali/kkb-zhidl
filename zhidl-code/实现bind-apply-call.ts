@@ -2,7 +2,7 @@
  * @author: zhidl
  * @Date: 2021-06-26 17:17:45
  * @description: 
- * @LastEditTime: 2021-06-26 18:31:56
+ * @LastEditTime: 2021-07-02 17:43:54
  * @LastEditors: zhidl
  */
 // @ts-nocheck
@@ -18,7 +18,7 @@ Function.prototype.zApply = zApply
 function zBind(thisArg: any, ...args) {
   const fn = this;
   return function () {
-    // 判断如果new 调用使用原函数
+    // 判断如果new 调用使用原函数 
     if(new.target) {
       return new fn(...arguments)
     } else {

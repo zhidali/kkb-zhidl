@@ -27,3 +27,6 @@ function reverse(head:ListNode, n) {
 	head.next = cur;
 	return pre;
 }
+
+
+

@@ -1,29 +1,45 @@
 
 
-var s = 'yapple';
-var c = 'apple';
-
-
-function getI(str, k) {
-  if(str.length < k.length) {
-    return false
-  }
-  var index = 0;
-
-  for(var i = 0; i < str.length; i++) {
-    if(str[i] === k[index]) {
-      index++;
-    } else {
-      index = 0;
-    }
-    if(index === k.length) {
-      return true
-    }
-    if(index === 0 && str.length - i < k.length) {
-      return false
-    }
-  }
+let res = [];
+let maxRequestNum = 4;
+let i = 0;
+async function sleep(fn, ...args) {
+  await new Promise(resolve => res.push({resolve, args}))
+  return fn(...args);
 }
- 
-let alog = getI(s, c);
-console.log(alog);
+
+async function request(path, params = {}) {
+  i++;
+  if(i < maxRequestNum + 1) {
+    return await ajax(path, params);
+  } else {
+    return await sleep(ajax, path, params)
+  }
+
+}
+
+function refreshRequestList() {
+  while (res.length > 0) {
+    res[0].resolve();
+    res.shift()
+	}
+}
+
+// 实际发送请求
+async function ajax(path, params) {
+  console.log(path, 'path');
+  return new Promise(resolve => {
+    setTimeout(() => {
+      refreshRequestList();
+      i--;
+      return resolve({path, params})
+    }, 3000)
+  })
+}
+
+
+request('1')
+request('2')
+request('3')
+request('4')
+request('5').then(r => console.log(r))

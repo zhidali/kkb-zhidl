@@ -25,7 +25,6 @@ function reverseList(head: ListNode | null): ListNode | null {
 	while(cur) {
 		
 		[cur.next, cur, pre] = [pre, cur.next as ListNode, cur]
-
 		// let next = cur.next;
 		// cur.next = pre;
 		// pre = cur;
