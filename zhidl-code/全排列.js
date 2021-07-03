@@ -2,12 +2,12 @@
  * @author: zhidl
  * @Date: 2021-07-03 21:57:15
  * @description: 
- * @LastEditTime: 2021-07-03 22:10:18
+ * @LastEditTime: 2021-07-04 01:12:37
  * @LastEditors: zhidl
  */
 // @ts-nocheck
 
-function permute(nums) {
+function permute1(nums) {
   let res = [];
   brea([]);
   return res;
@@ -25,15 +25,6 @@ function permute(nums) {
   }
 }
 
-function permute1(nums) {
-  let res = [];
-
-  let str = '';
-
-  return res;
-}
-
-
-let a = permute(['a', 'b', 'c', 'd']);
+let a = permute1(['a', 'b', 'c', 'd']);
 
 console.log(a, 'aaa');
