@@ -1,3 +1,4 @@
+// @ts-nocheck
 // reac负责逻辑控制 数据 -》 vdom
 import React from 'react';
 // 负责渲染实际dom  vdom -> dom转换
@@ -25,7 +26,6 @@ import List from './pages/list/list';
 
 import reportWebVitals from './reportWebVitals';
 
-
 function renderPage() {
 	ReactDOM.render(
 		<Provider store={store}>
@@ -44,7 +44,8 @@ function renderPage() {
 
 					{/* <Four /> */}
 					{/* <Five /> */}
-					<List />
+					{/* <List /> */}
+					111
 			</div>
 		</Provider>
 		,

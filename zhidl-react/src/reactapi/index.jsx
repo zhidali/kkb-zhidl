@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component } from 'react';
 // 模块化样式
 import style from './index.module.css';

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@bytemd/plugin-frontmatter": "^1.10.2"
+  }
+}

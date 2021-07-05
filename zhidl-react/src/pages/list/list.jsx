@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component, memo, useState, useEffect, useCallback, Fragment, useRef, useMemo } from 'react';
 import './list.less';
 
